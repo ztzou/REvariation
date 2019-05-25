@@ -33,7 +33,7 @@ def sim_seq(p_matrix, equi_freq, t, ncd):
     anc_arr = get_seq_by_multinomial(equi_freq, ncd)
     child_arr = anc_arr.copy()
     for codon_index in range(len(codon_list)):
-        positions = numpy.arange(child_arr.shape[0])[child_arr == codon_index]
+        positions = numpy.arange(child_arr.shape[0])[anc_arr == codon_index]
         position_count = len(positions)
         codon_child_states = get_seq_by_multinomial(
             single_branch_evo(codon_index, t, p_matrix), position_count
@@ -42,7 +42,7 @@ def sim_seq(p_matrix, equi_freq, t, ncd):
     seq1 = ''.join([codon_list[x] for x in child_arr])
     child_arr = anc_arr.copy()
     for codon_index in range(len(codon_list)):
-        positions = numpy.arange(child_arr.shape[0])[child_arr == codon_index]
+        positions = numpy.arange(child_arr.shape[0])[anc_arr == codon_index]
         position_count = len(positions)
         codon_child_states = get_seq_by_multinomial(
             single_branch_evo(codon_index, t, p_matrix), position_count
